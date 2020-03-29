@@ -1,15 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import { reducer } from "./redux/reducer";
-import thunk from "redux-thunk";
+import "./index.css";
+import App from "./App";
+// импортируем все связанное с saga
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './redux/sagas/sagas'
 
+// создаем "instance" саги
+const saga = createSagaMiddleware();
+
+// чтобы можно было использовать редакс devtools с middleware
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+// создаем store, подключая middleware с помощью applyMiddleware
+const store = createStore(reducer, composeEnhancers(applyMiddleware(saga)));
+
+// запускаем saga (можно обмануть и послать в аргументе ( function*(){} ) потому что saga требует генератор)
+saga.run(rootSaga)
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,13 +1,11 @@
-import { FETCH_TODO } from "./action-types";
-import { fetchToDo } from "../utils/fetchToDo";
+import {REQUEST_FETCH, RECEIVE_FETCH} from './action-types'
 
-export const fetchTodo = url => {
-  return async dispatch => {
-    const data = await fetchToDo();
-    console.log(data)
-    dispatch({
-      type: FETCH_TODO,
-      data
-    });
-  };
-};
+// этот action будет запускать сагу
+export const requestFetch = () => {
+  return { type: REQUEST_FETCH};
+}
+
+// этот action будет класть data из fetch'a с помощью редьюсера
+export const receiveFetch = data => {
+  return {type: RECEIVE_FETCH, data}
+}

@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchTodo } from "../redux/actions";
+import { requestFetch } from "../redux/actions";
 
 class List extends React.Component {
   state = {};
 
   componentDidMount() {
-    this.props.fetchAction()
+    // так же появляется в пропсах, ничего нового
+    this.props.fetchAction();
   }
 
   render() {
@@ -20,10 +21,14 @@ const mapStateToProps = state => {
   };
 };
 
+// забираем action, который будет запускать saga
 const mapDispatchToProps = dispatch => {
-    return {
-        fetchAction: () => dispatch(fetchTodo())
-    }
-}
+  return {
+    fetchAction: () => dispatch(requestFetch())
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(List);
