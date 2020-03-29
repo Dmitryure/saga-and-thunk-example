@@ -4,6 +4,7 @@ const defaultState = {
   data: {}
 };
 
+// никаких изменений
 export const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case FETCH_TODO:

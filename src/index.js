@@ -5,10 +5,12 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import { reducer } from "./redux/reducer";
+//импортируем все необходимое для thunk 
 import thunk from "redux-thunk";
 
+// подключаем thunk и devtools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
+// засовываем thunk в store
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
