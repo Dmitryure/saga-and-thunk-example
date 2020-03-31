@@ -7,7 +7,7 @@ class List extends React.Component {
 
   componentDidMount() {
     // так же появляется в пропсах, ничего нового
-    this.props.fetchAction();
+    this.props.fetchAction("https://swapi.co/api/people/1");
   }
 
   render() {
@@ -24,7 +24,7 @@ const mapStateToProps = state => {
 // забираем action, который будет запускать saga
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAction: () => dispatch(requestFetch())
+    fetchAction: url => dispatch(requestFetch(url))
   };
 };
 
