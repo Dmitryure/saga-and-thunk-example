@@ -5,11 +5,11 @@ import { receiveFetch } from "../actions";
 import { fetchToDo } from "../../utils/fetchToDo";
 
 // важно чтобы saga была генератором
-function* fetchSaga(params) {
-  console.log(params);
+function* fetchSaga(action) {
+  console.log(action);
   try {
     // вызываем функцию фетча с параметрами через запятую
-    const data = yield call(fetchToDo, params.data);
+    const data = yield call(fetchToDo, action.data);
     // ВАЖНО! кладем результат в action
     yield put(receiveFetch(data));
   } catch (e) {
