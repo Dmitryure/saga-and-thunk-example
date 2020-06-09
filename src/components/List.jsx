@@ -1,34 +1,21 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, {useEffect} from "react";
 import { requestFetch } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
-class List extends React.Component {
-  state = {};
 
-  componentDidMount() {
-    // так же появляется в пропсах, ничего нового
-    this.props.fetchAction("https://swapi.dev/api/people/1");
-  }
+const List = (props) => {
 
-  render() {
-    return <div>{JSON.stringify(this.props.data)}</div>;
-  }
+  const data = useSelector(store => store.data)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(requestFetch("https://swapi.dev/api/people/1"))
+  }, [])
+
+
+  return <div>{JSON.stringify(data)}</div>;
+
 }
 
-const mapStateToProps = state => {
-  return {
-    data: state.data
-  };
-};
-
-// забираем action, который будет запускать saga
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAction: url => dispatch(requestFetch(url))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(List);
+export default List
