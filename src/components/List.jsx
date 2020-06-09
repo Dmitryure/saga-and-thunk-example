@@ -7,7 +7,7 @@ class List extends React.Component {
 
   componentDidMount() {
     // так же появляется в пропсах, ничего нового
-    this.props.fetchAction("https://swapi.co/api/people/1");
+    this.props.fetchAction("https://swapi.dev/api/people/1");
   }
 
   render() {
