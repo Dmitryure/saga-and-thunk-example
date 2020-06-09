@@ -6,7 +6,7 @@ class List extends React.Component {
   state = {};
 
   componentDidMount() {
-    this.props.fetchAction()
+    this.props.fetchAction('https://swapi.dev/api/people/1')
   }
 
   render() {
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchAction: () => dispatch(fetchTodo())
+        fetchAction: (url) => dispatch(fetchTodo(url))
     }
 }
 
